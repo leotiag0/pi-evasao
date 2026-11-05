@@ -39,6 +39,7 @@ src/pi_evasao/  pipeline: ingestão do Inep, limpeza, banco SQLite, atributos, t
 testes/         testes automatizados (pytest), incluindo um teste contra vazamento de dados
 config/         parâmetros do estudo (recorte, semente, percentil, caminhos)
 relatorios/     métricas e figuras geradas pela avaliação do modelo
+docs/execucoes/ registro automático de cada execução do pipeline (parâmetros, contagens e versões das bibliotecas)
 ```
 
 ## Refazer o pipeline (opcional)
