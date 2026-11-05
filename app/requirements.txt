@@ -1,0 +1,6 @@
+# Dependências do DASHBOARD (o que a hospedagem instala). Deliberadamente enxuto: sem scikit-learn,
+# porque o app só lê os arquivos que o pipeline gera em app/dados/ (ver docs/decisoes/0007).
+streamlit==1.64.0   # fixa: versão nova no reinício quebra a página aberta no navegador (JS em cache)
+plotly>=5.20
+pandas>=2.2
+fpdf2>=2.8   # exportação da lista em PDF; Python puro, sem dependência de sistema

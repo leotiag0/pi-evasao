@@ -1,0 +1,4 @@
+# Configuração do Streamlit (lida da raiz do repositório, local e no Streamlit Cloud).
+[client]
+# esconde o menu em inglês (Rerun, Settings, Print...), que os avaliadores não precisam
+toolbarMode = "minimal"

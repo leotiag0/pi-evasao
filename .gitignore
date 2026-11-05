@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+# segredos e respostas do formulário nunca vão para o Git
+.streamlit/secrets.toml
+app/.streamlit/secrets.toml
+app/dados_feedback/
