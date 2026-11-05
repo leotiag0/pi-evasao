@@ -1,7 +1,19 @@
 __pycache__/
 *.pyc
 .venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+# dados e artefatos regeneráveis pelo pipeline
+dados/bruto/*
+dados/processado/*
+dados/*.db
+modelos/*
+!dados/bruto/.gitkeep
+!dados/processado/.gitkeep
+!modelos/.gitkeep
 # segredos e respostas do formulário nunca vão para o Git
+.env
 .streamlit/secrets.toml
 app/.streamlit/secrets.toml
 app/dados_feedback/

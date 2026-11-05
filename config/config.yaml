@@ -1,0 +1,44 @@
+# Configuração central do pipeline. Toda decisão parametrizável mora aqui,
+# para que o relatório possa citar UM arquivo como fonte dos parâmetros.
+
+seed: 42
+
+# Recorte do estudo: São Paulo, redes estadual e municipal, 2016-2025 (ADR 0014).
+# Contém o período do enunciado (2020-2024). 2016 é o primeiro ano com os arquivos por escola do INEP.
+recorte:
+  uf: SP
+  redes: [estadual, municipal]
+  anos: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+
+fonte_padrao: inep   # inep | sintetico (o sintético serve só a testes offline)
+
+# ADR 0003: alto risco = taxa de abandono no percentil >= P da distribuição do próprio ano-alvo.
+rotulo:
+  percentil: 0.80
+
+# ADR 0004: limiar de decisão escolhido por F-beta (beta=2 pondera recall 4x a precisão).
+modelagem:
+  fbeta: 2.0
+  cv_folds: 5
+  ano_ref_teste_temporal: 2024  # ano t do par mantido fora do treino (par 2024->2025)
+
+# Faixas de risco do dashboard (ADR 0007): o vermelho começa no menor corte cuja precisão observada atinge este valor.
+faixas:
+  precisao_vermelho: 0.60
+
+# Andaime sintético, só para os testes (ADR 0014). Nunca usar seus resultados como achado sobre escolas reais.
+sintetico:
+  n_escolas: 5000
+  persistencia: 0.80   # autocorrelação anual da vulnerabilidade latente da escola
+  sujeira: true        # injeta NaN, sentinelas, duplicatas e taxas inválidas para exercitar o ETL
+
+caminhos:
+  bruto: dados/bruto
+  processado: dados/processado
+  banco: dados/evasao.db
+  modelos: modelos
+  figuras: relatorios/figuras
+  metricas: relatorios/metricas
+  execucoes: docs/execucoes
+  docs: docs
+  app_dados: app/dados      # CSVs lidos pelo dashboard (gerados por `pi-evasao prever`)

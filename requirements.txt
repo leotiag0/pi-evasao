@@ -1,0 +1,8 @@
+# Núcleo do projeto (Etapas 1-3). Ver docs/decisoes/0014-conjunto-minimo-de-dados.md
+pandas>=3.0
+numpy>=2.0
+scikit-learn>=1.5
+joblib>=1.3
+pyyaml>=6.0
+matplotlib>=3.8
+pytest>=8.0

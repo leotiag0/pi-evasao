@@ -31,6 +31,28 @@ exibe a probabilidade bruta do modelo.
 - O aplicativo lê apenas os arquivos já gerados em `app/dados/` (previsões, histórico e metadados do modelo); não treina
   nada nem acessa banco de dados.
 
+## Estrutura
+
+```
+app/            aplicativo Streamlit (publicado no Streamlit Community Cloud)
+src/pi_evasao/  pipeline: ingestão do Inep, limpeza, banco SQLite, atributos, treino, avaliação e previsão
+testes/         testes automatizados (pytest), incluindo um teste contra vazamento de dados
+config/         parâmetros do estudo (recorte, semente, percentil, caminhos)
+relatorios/     métricas e figuras geradas pela avaliação do modelo
+```
+
+## Refazer o pipeline (opcional)
+
+```bash
+python -m venv .venv
+pip install -e .
+python -m pi_evasao.cli pipeline --fonte inep   # 1ª execução baixa ~1,4 GB do Inep (~5 min)
+python -m pi_evasao.cli prever                   # atualiza app/dados/
+python -m pytest testes                          # testes automatizados
+```
+
+O modo `--fonte sintetico` gera dados fabricados apenas para os testes; nenhum resultado vem dele.
+
 ## Executar localmente
 
 Requer Python 3.11 ou superior.

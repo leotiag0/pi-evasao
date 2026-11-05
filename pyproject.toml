@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pi-evasao"
+version = "0.1.0"
+description = "PI IV Univesp (PJI410, 2026S2) - Plataforma de alerta precoce de evasao escolar"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[project.scripts]
+pi-evasao = "pi_evasao.cli:main"
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["testes"]
+addopts = "-q"
